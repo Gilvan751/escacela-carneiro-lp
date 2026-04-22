@@ -108,5 +108,9 @@ temp/
 # Webdev artifacts (checkpoint zips, migrations, etc.)
 .webdev/
 
+# Arquivos locais que não devem subir
+escacela-carneiro-lp (1)/
+*.skill
+
 # Manus version file (auto-generated, not part of source)
 client/public/__manus__/version.json

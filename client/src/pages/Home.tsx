@@ -11,6 +11,13 @@ import { useState, useEffect } from "react";
  * - Large hero images as protagonists
  * - Dramatic animations and movement
  * - Community and transformation narrative
+ *
+ * Accessibility: WCAG 2.1 AA
+ * - Semantic HTML with proper heading hierarchy
+ * - ARIA labels and roles for screen readers
+ * - Keyboard navigation support
+ * - Focus visible states
+ * - Lazy loading for images
  */
 
 export default function Home() {
@@ -25,21 +32,21 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* Header/Navigation */}
-      <header className="sticky top-0 z-50 bg-white shadow-md">
-        <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
+      <header className="sticky top-0 z-50 bg-white shadow-md" role="banner">
+        <nav className="container mx-auto px-4 py-4 flex justify-between items-center" aria-label="Navegação principal">
           <div className="flex items-center gap-2">
             <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-orange-500 rounded-lg flex items-center justify-center">
-              <Dumbbell className="w-6 h-6 text-white" />
+              <Dumbbell className="w-6 h-6 text-white" aria-hidden="true" />
             </div>
-            <h1 className="text-xl font-bold text-slate-900">Escacela Carneiro</h1>
+            <span className="text-xl font-bold text-slate-900">Escacela Carneiro</span>
           </div>
 
           <div className="hidden md:flex gap-8 items-center">
-            <a href="#sobre" className="text-slate-700 hover:text-purple-600 transition">Sobre</a>
-            <a href="#servicos" className="text-slate-700 hover:text-purple-600 transition">Serviços</a>
-            <a href="#depoimentos" className="text-slate-700 hover:text-purple-600 transition">Depoimentos</a>
-            <a href="#faq" className="text-slate-700 hover:text-purple-600 transition">FAQ</a>
-            <Button className="bg-gradient-to-r from-purple-600 to-purple-500 hover:shadow-lg hover:scale-105 transition-all">
+            <a href="#sobre" className="text-slate-700 hover:text-purple-600 transition focus:outline-none focus:ring-2 focus:ring-purple-600 rounded px-2 py-1">Sobre</a>
+            <a href="#servicos" className="text-slate-700 hover:text-purple-600 transition focus:outline-none focus:ring-2 focus:ring-purple-600 rounded px-2 py-1">Serviços</a>
+            <a href="#depoimentos" className="text-slate-700 hover:text-purple-600 transition focus:outline-none focus:ring-2 focus:ring-purple-600 rounded px-2 py-1">Depoimentos</a>
+            <a href="#faq" className="text-slate-700 hover:text-purple-600 transition focus:outline-none focus:ring-2 focus:ring-purple-600 rounded px-2 py-1">FAQ</a>
+            <Button className="bg-gradient-to-r from-purple-600 to-purple-500 hover:shadow-lg hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-600">
               Agendar Consulta
             </Button>
           </div>
@@ -47,13 +54,15 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden" aria-label="Seção principal">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: `url('https://d2xsxph8kpxj0f.cloudfront.net/113901084/Mc7aaJrh7nxE4abZxVwqTG/hero-personal-trainer-8eBT8ZYTKwrZQ42WYcJ4ZD.webp')`,
             transform: `translateY(${scrollY * 0.5}px)`,
           }}
+          role="img"
+          aria-label="Personal trainer em ambiente de academia moderna"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40"></div>
         </div>
@@ -69,10 +78,10 @@ export default function Home() {
             Alcance seus objetivos de saúde e fitness com um plano feito sob medida para você.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-gradient-to-r from-purple-600 to-purple-500 text-white px-8 py-6 text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 animate-pulse-glow">
+            <Button className="bg-gradient-to-r from-purple-600 to-purple-500 text-white px-8 py-6 text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 animate-pulse-glow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-600">
               Descubra Nossos Planos
             </Button>
-            <Button variant="outline" className="border-white text-white px-8 py-6 text-lg hover:bg-white/10">
+            <Button variant="outline" className="border-white text-white px-8 py-6 text-lg hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white">
               Saiba Mais
             </Button>
           </div>
@@ -81,26 +90,29 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce" aria-hidden="true">
           <ChevronDown className="w-8 h-8 text-white" />
         </div>
       </section>
 
       {/* Sobre Section */}
-      <section id="sobre" className="py-20 bg-white">
+      <section id="sobre" className="py-20 bg-white" aria-labelledby="sobre-title">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-slide-in-left">
               <img
                 src="https://d2xsxph8kpxj0f.cloudfront.net/113901084/Mc7aaJrh7nxE4abZxVwqTG/client-training-session-XKY2HsyxrqSqFZaadFhcgb.webp"
-                alt="Escacela Carneiro treinando cliente"
+                alt="Escacela Carneiro treinando cliente em sessão de musculação personalizada"
                 className="rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow"
+                loading="lazy"
+                width="600"
+                height="400"
               />
             </div>
 
             <div className="animate-slide-in-right">
               <div className="section-divider mb-4"></div>
-              <h2 className="text-4xl font-bold mb-6 text-slate-900">
+              <h2 id="sobre-title" className="text-4xl font-bold mb-6 text-slate-900">
                 Conheça Seu <span className="gradient-text">Personal Trainer</span>
               </h2>
               <p className="text-lg text-slate-700 mb-6 leading-relaxed">
@@ -112,22 +124,22 @@ export default function Home() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg">
-                  <Zap className="w-8 h-8 text-purple-600 mb-2" />
+                  <Zap className="w-8 h-8 text-purple-600 mb-2" aria-hidden="true" />
                   <h3 className="font-bold text-slate-900">Personalização</h3>
                   <p className="text-sm text-slate-700">Planos 100% adaptados</p>
                 </div>
                 <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-4 rounded-lg">
-                  <TrendingUp className="w-8 h-8 text-orange-600 mb-2" />
+                  <TrendingUp className="w-8 h-8 text-orange-600 mb-2" aria-hidden="true" />
                   <h3 className="font-bold text-slate-900">Resultados</h3>
                   <p className="text-sm text-slate-700">Comprovados e reais</p>
                 </div>
                 <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg">
-                  <Heart className="w-8 h-8 text-purple-600 mb-2" />
+                  <Heart className="w-8 h-8 text-purple-600 mb-2" aria-hidden="true" />
                   <h3 className="font-bold text-slate-900">Motivação</h3>
                   <p className="text-sm text-slate-700">Constante e genuína</p>
                 </div>
                 <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-4 rounded-lg">
-                  <Users className="w-8 h-8 text-orange-600 mb-2" />
+                  <Users className="w-8 h-8 text-orange-600 mb-2" aria-hidden="true" />
                   <h3 className="font-bold text-slate-900">Saúde Integral</h3>
                   <p className="text-sm text-slate-700">Abordagem holística</p>
                 </div>
@@ -138,11 +150,11 @@ export default function Home() {
       </section>
 
       {/* Serviços Section */}
-      <section id="servicos" className="py-20 bg-gradient-to-b from-slate-50 to-white">
+      <section id="servicos" className="py-20 bg-gradient-to-b from-slate-50 to-white" aria-labelledby="servicos-title">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-fade-in-up">
             <div className="section-divider mx-auto mb-4"></div>
-            <h2 className="text-4xl font-bold mb-4 text-slate-900">Meus Serviços</h2>
+            <h2 id="servicos-title" className="text-4xl font-bold mb-4 text-slate-900">Meus Serviços</h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
               Planos de treinamento pensados para suas metas e estilo de vida
             </p>
@@ -173,15 +185,15 @@ export default function Home() {
               return (
                 <Card
                   key={idx}
-                  className="p-8 hover:shadow-2xl hover:scale-105 transition-all duration-300 animate-fade-in-scale border-0 bg-white"
+                  className="p-8 hover:shadow-2xl hover:scale-105 transition-all duration-300 animate-fade-in-scale border-0 bg-white focus-within:ring-2 focus-within:ring-purple-600"
                   style={{ animationDelay: `${idx * 0.1}s` }}
                 >
                   <div className={`bg-gradient-to-br ${service.color} w-16 h-16 rounded-lg flex items-center justify-center mb-6`}>
-                    <Icon className="w-8 h-8 text-white" />
+                    <Icon className="w-8 h-8 text-white" aria-hidden="true" />
                   </div>
                   <h3 className="text-2xl font-bold mb-4 text-slate-900">{service.title}</h3>
                   <p className="text-slate-700 mb-6 leading-relaxed">{service.description}</p>
-                  <Button className="w-full bg-gradient-to-r from-purple-600 to-purple-500 hover:shadow-lg">
+                  <Button className="w-full bg-gradient-to-r from-purple-600 to-purple-500 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-600">
                     Saiba Mais
                   </Button>
                 </Card>
@@ -192,11 +204,11 @@ export default function Home() {
       </section>
 
       {/* Benefícios Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white" aria-labelledby="beneficios-title">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-fade-in-up">
             <div className="section-divider mx-auto mb-4"></div>
-            <h2 className="text-4xl font-bold mb-4 text-slate-900">Por Que Treinar Comigo?</h2>
+            <h2 id="beneficios-title" className="text-4xl font-bold mb-4 text-slate-900">Por Que Treinar Comigo?</h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
               Os resultados que você busca, com a orientação que você merece
             </p>
@@ -216,7 +228,7 @@ export default function Home() {
                 className="flex items-start gap-4 p-6 bg-gradient-to-br from-slate-50 to-slate-100 rounded-lg hover:shadow-lg transition-all animate-fade-in-up"
                 style={{ animationDelay: `${idx * 0.05}s` }}
               >
-                <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1" aria-hidden="true">
                   <span className="text-white font-bold text-sm">✓</span>
                 </div>
                 <p className="text-lg font-semibold text-slate-900">{benefit}</p>
@@ -227,7 +239,7 @@ export default function Home() {
       </section>
 
       {/* Transformação Section */}
-      <section className="py-20 bg-gradient-to-r from-slate-900 to-slate-800 text-white">
+      <section className="py-20 bg-gradient-to-r from-slate-900 to-slate-800 text-white" aria-labelledby="transformacao-title">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 animate-fade-in-up">
             <h2 className="text-4xl font-bold mb-4">Veja Resultados Reais</h2>
@@ -237,11 +249,14 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/113901084/Mc7aaJrh7nxE4abZxVwqTG/transformation-success-nzL2NXmMSzwVx9Qt72wNyE.webp"
-              alt="Transformação antes e depois"
+              alt="Transformação corporal antes e depois de treinamento personalizado"
               className="rounded-2xl shadow-2xl animate-zoom-in"
+              loading="lazy"
+              width="600"
+              height="400"
             />
             <div className="animate-slide-in-right">
-              <h3 className="text-3xl font-bold mb-6">Histórias de Sucesso</h3>
+              <h3 id="transformacao-title" className="text-3xl font-bold mb-6">Histórias de Sucesso</h3>
               <div className="space-y-6">
                 {[
                   { name: "João Silva", result: "Perdeu 15kg em 4 meses" },
@@ -260,11 +275,11 @@ export default function Home() {
       </section>
 
       {/* Depoimentos Section */}
-      <section id="depoimentos" className="py-20 bg-white">
+      <section id="depoimentos" className="py-20 bg-white" aria-labelledby="depoimentos-title">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-fade-in-up">
             <div className="section-divider mx-auto mb-4"></div>
-            <h2 className="text-4xl font-bold mb-4 text-slate-900">Quem Treina Comigo Aprova</h2>
+            <h2 id="depoimentos-title" className="text-4xl font-bold mb-4 text-slate-900">Quem Treina Comigo Aprova</h2>
             <p className="text-xl text-slate-600">Veja os resultados reais dos meus alunos</p>
           </div>
 
@@ -276,14 +291,14 @@ export default function Home() {
             ].map((testimonial, idx) => (
               <Card
                 key={idx}
-                className="p-8 hover:shadow-xl transition-all animate-fade-in-scale border-0"
+                className="p-8 hover:shadow-xl transition-all animate-fade-in-scale border-0 focus-within:ring-2 focus-within:ring-purple-600"
                 style={{ animationDelay: `${idx * 0.1}s` }}
               >
-                <div className="flex gap-1 mb-4">
+                <div className="flex gap-1 mb-4" aria-label={`Avaliação: ${testimonial.rating} de 5 estrelas`}>
                   {Array(testimonial.rating)
                     .fill(0)
                     .map((_, i) => (
-                      <span key={i} className="text-orange-500">★</span>
+                      <span key={i} className="text-orange-500" aria-hidden="true">★</span>
                     ))}
                 </div>
                 <p className="text-slate-700 mb-6 italic">"{testimonial.quote}"</p>
@@ -295,11 +310,11 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="py-20 bg-gradient-to-b from-slate-50 to-white">
+      <section id="faq" className="py-20 bg-gradient-to-b from-slate-50 to-white" aria-labelledby="faq-title">
         <div className="container mx-auto px-4 max-w-3xl">
           <div className="text-center mb-16 animate-fade-in-up">
             <div className="section-divider mx-auto mb-4"></div>
-            <h2 className="text-4xl font-bold mb-4 text-slate-900">Dúvidas Comuns</h2>
+            <h2 id="faq-title" className="text-4xl font-bold mb-4 text-slate-900">Dúvidas Comuns</h2>
             <p className="text-xl text-slate-600">Respostas para suas principais perguntas</p>
           </div>
 
@@ -327,7 +342,7 @@ export default function Home() {
               },
             ].map((item, idx) => (
               <AccordionItem key={idx} value={`item-${idx}`} className="border-2 border-slate-200 rounded-lg px-6">
-                <AccordionTrigger className="text-lg font-semibold text-slate-900 hover:text-purple-600">
+                <AccordionTrigger className="text-lg font-semibold text-slate-900 hover:text-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-600 rounded">
                   {item.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-slate-700 text-base leading-relaxed">
@@ -340,9 +355,9 @@ export default function Home() {
       </section>
 
       {/* CTA Final Section */}
-      <section className="py-20 bg-gradient-to-r from-purple-600 to-orange-500 text-white">
+      <section className="py-20 bg-gradient-to-r from-purple-600 to-orange-500 text-white" aria-labelledby="cta-title">
         <div className="container mx-auto px-4 text-center animate-fade-in-up">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <h2 id="cta-title" className="text-4xl md:text-5xl font-bold mb-6">
             Pronto Para Começar Sua Transformação?
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-100">
@@ -350,12 +365,12 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Button className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-6 text-lg font-bold">
+            <Button className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-6 text-lg font-bold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">
               Agendar Consulta Gratuita
             </Button>
             <Button
               variant="outline"
-              className="border-white text-white hover:bg-white/10 px-8 py-6 text-lg font-bold"
+              className="border-white text-white hover:bg-white/10 px-8 py-6 text-lg font-bold focus:outline-none focus:ring-2 focus:ring-white"
             >
               Fale Comigo no WhatsApp
             </Button>
@@ -368,46 +383,46 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-gray-400 py-12">
+      <footer className="bg-slate-900 text-gray-400 py-12" role="contentinfo">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-orange-500 rounded-lg"></div>
-                <h3 className="font-bold text-white">Escacela Carneiro</h3>
+                <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-orange-500 rounded-lg" aria-hidden="true"></div>
+                <span className="font-bold text-white">Escacela Carneiro</span>
               </div>
               <p className="text-sm">Personal Trainer | Saúde e Performance</p>
             </div>
 
             <div>
-              <h4 className="font-bold text-white mb-4">Navegação</h4>
+              <h2 className="font-bold text-white mb-4 text-base">Navegação</h2>
               <ul className="space-y-2 text-sm">
-                <li><a href="#sobre" className="hover:text-purple-400">Sobre Mim</a></li>
-                <li><a href="#servicos" className="hover:text-purple-400">Serviços</a></li>
-                <li><a href="#depoimentos" className="hover:text-purple-400">Depoimentos</a></li>
-                <li><a href="#faq" className="hover:text-purple-400">FAQ</a></li>
+                <li><a href="#sobre" className="hover:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-600 rounded px-1">Sobre Mim</a></li>
+                <li><a href="#servicos" className="hover:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-600 rounded px-1">Serviços</a></li>
+                <li><a href="#depoimentos" className="hover:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-600 rounded px-1">Depoimentos</a></li>
+                <li><a href="#faq" className="hover:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-600 rounded px-1">FAQ</a></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-bold text-white mb-4">Redes Sociais</h4>
+              <h2 className="font-bold text-white mb-4 text-base">Redes Sociais</h2>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-purple-400">Instagram</a></li>
-                <li><a href="#" className="hover:text-purple-400">Facebook</a></li>
-                <li><a href="#" className="hover:text-purple-400">TikTok</a></li>
+                <li><a href="#" className="hover:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-600 rounded px-1">Instagram</a></li>
+                <li><a href="#" className="hover:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-600 rounded px-1">Facebook</a></li>
+                <li><a href="#" className="hover:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-600 rounded px-1">TikTok</a></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-bold text-white mb-4">Contato</h4>
-              <p className="text-sm mb-2">Email: contato@escacelacarneiro.com</p>
-              <p className="text-sm">WhatsApp: (11) 99999-9999</p>
+              <h2 className="font-bold text-white mb-4 text-base">Contato</h2>
+              <p className="text-sm mb-2">Email: <a href="mailto:contato@escacelacarneiro.com" className="hover:text-purple-400">contato@escacelacarneiro.com</a></p>
+              <p className="text-sm">WhatsApp: <a href="tel:+5511999999999" className="hover:text-purple-400">(11) 99999-9999</a></p>
             </div>
           </div>
 
           <div className="border-t border-slate-700 pt-8 text-center text-sm">
             <p>© 2026 Escacela Carneiro. Todos os direitos reservados.</p>
-            <p className="mt-2"><a href="#" className="hover:text-purple-400">Política de Privacidade</a></p>
+            <p className="mt-2"><a href="#" className="hover:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-600 rounded px-1">Política de Privacidade</a></p>
           </div>
         </div>
       </footer>
@@ -417,9 +432,10 @@ export default function Home() {
         href="https://wa.me/5511999999999?text=Olá%20Escacela,%20tenho%20interesse%20em%20seus%20serviços%20de%20personal%20trainer"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-8 right-8 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 z-40 flex items-center justify-center"
+        className="fixed bottom-8 right-8 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 z-40 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600"
+        aria-label="Contato via WhatsApp"
       >
-        <MessageCircle className="w-6 h-6" />
+        <MessageCircle className="w-6 h-6" aria-hidden="true" />
       </a>
     </div>
   );

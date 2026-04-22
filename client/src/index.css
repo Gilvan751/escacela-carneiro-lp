@@ -307,6 +307,17 @@
     animation: pulseGlow 2s infinite;
   }
 
+  /* Performance: GPU layer only for fixed button and bounce */
+  .animate-bounce { will-change: transform; }
+  .fixed { will-change: transform; }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    content-visibility: auto;
+  }
+
   /* Button styles */
   .btn-primary {
     @apply bg-gradient-to-r from-purple-600 to-purple-500 text-white font-semibold px-8 py-3 rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer;

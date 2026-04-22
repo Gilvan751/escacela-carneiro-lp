@@ -91,14 +91,19 @@ export default function Home() {
         </nav>
       </header>
 
-      {/* Hero — sem parallax JS, usa CSS background-attachment para evitar layout thrashing */}
+      {/* Hero — <img> real para LCP otimizado, sem parallax JS */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden" aria-label="Seção principal">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('${HERO_IMG}')` }}
-          role="img"
-          aria-label="Personal trainer em ambiente de academia moderna"
-        >
+        <div className="absolute inset-0">
+          <img
+            src={HERO_IMG}
+            alt=""
+            aria-hidden="true"
+            fetchPriority="high"
+            decoding="sync"
+            className="w-full h-full object-cover object-center"
+            width="1920"
+            height="1080"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40"></div>
         </div>
 
